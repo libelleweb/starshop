@@ -2,14 +2,26 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class MainController
+class MainController extends AbstractController
 {
     #[Route('/')]
-    public function index(): Response
+    public function indexStarShop(): Response
     {
-        return new Response('<strong>Starshop</strong>: you are not logged in');
+        $starshipCount = 333;
+
+        $myShip = [
+            'name' => 'StarshipAN',
+            'class' => 'Garden',
+            'captain' => 'professor mr. alex',
+            'status' => 'In progress'
+        ];
+        return $this->render('main/indexStarShop.html.twig', [
+            'numberOfStarshipCount' => $starshipCount,
+            'myShip' => $myShip
+        ]);
     }
 }
